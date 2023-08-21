@@ -1,4 +1,3 @@
-/* eslint-disable no-unreachable */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./component/Header";
 import Home from "./component/Home";
