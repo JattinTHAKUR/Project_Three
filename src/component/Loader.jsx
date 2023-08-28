@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Coins = () => {
+const Loader = () => {
   return (
     <div>
-      Coinbs
+      
     </div>
   )
 }
 
-export default Coins
+export default Loader

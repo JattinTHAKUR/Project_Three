@@ -7,7 +7,7 @@ import Exchanges from "./component/Exchanges";
 
 
 function App() {
-  return 
+  return (
   <Router>
     <Header />
     <Routes>
@@ -18,6 +18,7 @@ function App() {
 
     </Routes>
   </Router>
+  );
 }
 
 export default App;
