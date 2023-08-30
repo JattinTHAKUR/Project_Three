@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../index";
 import {
@@ -8,9 +8,57 @@ import {
   Image,
   Text,
   VStack,
+  IconButton,
+  Box,
 } from "@chakra-ui/react";
+import { FaArrowUp } from "react-icons/fa";
 import Loader from "./Loader";
 import ErrorComponent from "./ErrorComponent";
+
+const ScrollToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <Box
+      position="fixed"
+      bottom="20px"
+      right="20px"
+      display={isVisible ? "block" : "none"}
+      onClick={scrollToTop}
+      cursor="pointer"
+      zIndex="999"
+    >
+      <IconButton
+        icon={<FaArrowUp />}
+        aria-label="Scroll to top"
+        size="lg"
+        colorScheme="blue"
+      />
+    </Box>
+  );
+};
 
 const Exchanges = () => {
   const [exchanges, setExchanges] = useState([]);
@@ -51,6 +99,7 @@ const Exchanges = () => {
               />
             ))}
           </HStack>
+          <ScrollToTop />
         </>
       )}
     </Container>
